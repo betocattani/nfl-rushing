@@ -13,9 +13,9 @@ alias TheScore.Repo
   total_rushing_touchdowns: "0",
   longest_rush: "7",
   rushing_first_downs: "0",
-  rushing_first_down_percentage_1st: "0",
-  rushing_yards_each_20_plus: "0",
-  rushing_yards_each_40_plus: "0",
+  rushing_first_down_percentage_first: "0",
+  rushing_yards_each_twenty_plus: "0",
+  rushing_yards_each_forty_plus: "0",
   rushing_fumbles: "0"
 } |> Repo.insert!
 
@@ -31,9 +31,9 @@ alias TheScore.Repo
   total_rushing_touchdowns: "0",
   longest_rush: "29",
   rushing_first_downs: "2",
-  rushing_first_down_percentage_1st: "33.3",
-  rushing_yards_each_20_plus: "1",
-  rushing_yards_each_40_plus: "0",
+  rushing_first_down_percentage_first: "33.3",
+  rushing_yards_each_twenty_plus: "1",
+  rushing_yards_each_forty_plus: "0",
   rushing_fumbles: "1"
 } |> Repo.insert!
 
@@ -49,9 +49,9 @@ alias TheScore.Repo
   total_rushing_touchdowns: "0",
   longest_rush: "7",
   rushing_first_downs: "1",
-  rushing_first_down_percentage_1st: "33.3",
-  rushing_yards_each_20_plus: "0",
-  rushing_yards_each_40_plus: "0",
+  rushing_first_down_percentage_first: "33.3",
+  rushing_yards_each_twenty_plus: "0",
+  rushing_yards_each_forty_plus: "0",
   rushing_fumbles: "0"
 } |> Repo.insert!
 
@@ -67,8 +67,8 @@ alias TheScore.Repo
   total_rushing_touchdowns: "0",
   longest_rush: "15",
   rushing_first_downs: "1",
-  rushing_first_down_percentage_1st: "100",
-  rushing_yards_each_20_plus: "0",
-  rushing_yards_each_40_plus: "0",
+  rushing_first_down_percentage_first: "100",
+  rushing_yards_each_twenty_plus: "0",
+  rushing_yards_each_forty_plus: "0",
   rushing_fumbles: "0"
 } |> Repo.insert!

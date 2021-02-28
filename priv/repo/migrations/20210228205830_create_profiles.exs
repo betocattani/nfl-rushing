@@ -14,9 +14,9 @@ defmodule TheScore.Repo.Migrations.CreateProfiles do
       add :total_rushing_touchdowns, :string
       add :longest_rush, :string
       add :rushing_first_downs, :string
-      add :rushing_first_down_percentage_1st, :string
-      add :rushing_yards_each_20_plus, :string
-      add :rushing_yards_each_40_plus, :string
+      add :rushing_first_down_percentage_first, :string
+      add :rushing_yards_each_twenty_plus, :string
+      add :rushing_yards_each_forty_plus, :string
       add :rushing_fumbles, :string
 
       timestamps()
