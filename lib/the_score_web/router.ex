@@ -25,6 +25,9 @@ defmodule TheScoreWeb.Router do
 
       pipe_through :api
 
+      forward "/api", Absinthe.Plug,
+        schema: TheScoreWeb.Schema
+
       forward "/graphiql", Absinthe.Plug.GraphiQL,
         schema: TheScoreWeb.Schema,
         interface: :simple,
