@@ -20,8 +20,15 @@ defmodule TheScoreWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
-      pipe_through [:fetch_session, :protect_from_forgery]
+      # pipe_through [:fetch_session, :protect_from_forgery]
       live_dashboard "/dashboard", metrics: TheScoreWeb.Telemetry
+
+      pipe_through :api
+
+      forward "/graphiql", Absinthe.Plug.GraphiQL,
+        schema: TheScoreWeb.Schema,
+        interface: :simple,
+        context: %{pubsub: TheScoreWeb.Endpoint}
     end
   end
 end
