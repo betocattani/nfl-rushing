@@ -6,14 +6,70 @@ To start your Phoenix server:
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Now you can visit [`localhost:4000`](http://localhost:4000/graphiql) from your browser to
+access the GraphQL Playground
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+list all Players Profiles
+```javascript
+{
+  allPlayers {
+    name
+    position
+    rushingAttempts
+    rushingAttemptsPerGameAvg
+    rushingAverageYardsPerAttempt
+    rushingFirstDownPercentageFirst
+    rushingFirstDowns
+    rushingFumbles
+    rushingYardsEachFortyPlus
+    rushingYardsEachTwentyPlus
+    rushingYardsPerGame
+    team
+    totalRushingTouchdowns
+    totalRushingYards
+  }
+}
+```
 
-## Learn more
+Mutation to create a new Player Profile
+```javascript
+mutation {
+  createProfile(longestRush: "3",
+    name: "Periclao",
+    position: "AT",
+    rushingAttempts: "6",
+    rushingAttemptsPerGameAvg: "3",
+    rushingAverageYardsPerAttempt: "3.7",
+    rushingFirstDownPercentageFirst: "3",
+    rushingFirstDowns: "1",
+    rushingFumbles: "9",
+    rushingYardsEachFortyPlus: "3",
+    rushingYardsEachTwentyPlus: "2",
+    rushingYardsPerGame: "9",
+    team: "Phoenix",
+    totalRushingTouchdowns: "1",
+    totalRushingYards: "8"
+  ) {
+    name
+    position
+    rushingAttempts
+    rushingAttemptsPerGameAvg
+    rushingAverageYardsPerAttempt
+    rushingFirstDownPercentageFirst
+    rushingFirstDowns
+    rushingFumbles
+    rushingYardsEachFortyPlus
+    rushingYardsEachTwentyPlus
+    rushingYardsPerGame
+    team
+    totalRushingTouchdowns
+    totalRushingYards
+  }
+}
+```
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+# Dependencies
+Elixir
+Phoenix
+Absinthe - Graphql
+PostgreSQL
