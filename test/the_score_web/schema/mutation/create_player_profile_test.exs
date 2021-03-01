@@ -13,13 +13,15 @@ defmodule TheScoreWeb.Schema.Mutation.CreatePlayerProfileTest do
     createPlayerProfile(input: $playerProfile) {
       name
       team
+      position
     }
   }
   """
   test "createPlayerProfile field creates an profile" do
     player_profile = %{
       "name" => "John Doe",
-      "team" => "São Bento"
+      "team" => "São Bento",
+      "position" => "attack"
     }
     conn = build_conn()
     conn = post conn, "/api",
@@ -30,7 +32,8 @@ defmodule TheScoreWeb.Schema.Mutation.CreatePlayerProfileTest do
       "data" => %{
         "createPlayerProfile" => %{
           "name" => player_profile["name"],
-          "team" => player_profile["team"]
+          "team" => player_profile["team"],
+          "position" => player_profile["position"]
         }
       }
     }
