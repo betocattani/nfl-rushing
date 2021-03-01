@@ -38,4 +38,27 @@ defmodule TheScoreWeb.Schema.Mutation.CreatePlayerProfileTest do
       }
     }
   end
+
+  test "creating a player profile with an existent name fails" do
+    player_profile = %{
+      "name" => "Marc Mariani",
+      "team" => "São Bento",
+      "position" => "attack"
+    }
+    conn = build_conn()
+    conn = post conn, "/api",
+      query: @query,
+      variables: %{"playerProfile" => player_profile}
+
+    assert json_response(conn, 200) == %{
+      "data" => %{"createPlayerProfile" => nil},
+      "errors" => [
+        %{
+          "locations" => [%{"column" => 3, "line" => 2}],
+          "message" => "Could not be possible to create the player profile",
+          "path" => ["createPlayerProfile"]
+        }
+      ]
+    }
+  end
 end
