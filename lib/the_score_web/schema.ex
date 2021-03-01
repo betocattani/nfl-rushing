@@ -7,7 +7,7 @@ defmodule TheScoreWeb.Schema do
 
   query do
     @desc "Get all players"
-    field :all_players, list_of(:player) do
+    field :players, list_of(:player) do
       arg :filter, :player_profile_filter
       arg :order, type: :sort_players, default_value: :asc
       resolve &Resolvers.Players.all_profiles/3

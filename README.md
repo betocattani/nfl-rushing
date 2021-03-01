@@ -12,7 +12,7 @@ access the GraphQL Playground
 list all Players Profiles
 ```javascript
 {
-  allPlayers {
+  players {
     name
     position
     rushingAttempts
@@ -73,15 +73,16 @@ Query with arguments
 // {"term": "Jo"}
 
 query ($term: String) {
-  allPlayers(matching: $term, order: DESC) {
+  players(matching: $term, order: DESC) {
     name
   }
 }
 ```
 
 Using filters
+```javascript
 {
-  allPlayers(filter: {
+  players(filter: {
     name: "Cattani",
     totalRushingYards: "8",
     longestRush: "3",
@@ -93,14 +94,26 @@ Using filters
     totalRushingTouchdowns
   }
 }
+```
+
+Using filter with Variables
+```javascript
+query ($filter: PlayerProfileFilter!) {
+  players(filter: $filter) {
+    name
+  }
+}
+
+{"filter": {"name": "cattani"}}
+or
+{"filter": {}}
+```
 
 # Dependencies
 Elixir
 Phoenix
 Absinthe - Graphql
 PostgreSQL
-
-
 
 - [] Missing cast values
 - [] Download csv file
