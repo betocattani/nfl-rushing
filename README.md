@@ -99,3 +99,11 @@ Elixir
 Phoenix
 Absinthe - Graphql
 PostgreSQL
+
+
+
+- [] Missing cast values
+- [] Download csv file
+- [] Implement module to read json and populate the database
+- [] Front end application
+- [] Explain the solution

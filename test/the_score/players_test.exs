@@ -18,11 +18,6 @@ defmodule TheScore.PlayersTest do
       profile
     end
 
-    # test "list_profiles/3 returns all profiles" do
-    #   profile = profile_fixture()
-    #   assert Players.list_profiles() == [profile]
-    # end
-
     test "get_profile!/1 returns the profile with given id" do
       profile = profile_fixture()
       assert Players.get_profile!(profile.id) == profile
