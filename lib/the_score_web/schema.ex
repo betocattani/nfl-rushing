@@ -3,6 +3,11 @@ defmodule TheScoreWeb.Schema do
 
   alias TheScoreWeb.Resolvers
 
+  enum :sort_players do
+    value :asc
+    value :desc
+  end
+
   object :player do
     field :name, :string
     field :team, :string
@@ -25,6 +30,7 @@ defmodule TheScoreWeb.Schema do
     @desc "Get all players"
     field :all_players, list_of(:player) do
       arg :matching, :string
+      arg :order, type: :sort_players, default_value: :asc
       resolve &Resolvers.Players.all_profiles/3
     end
   end

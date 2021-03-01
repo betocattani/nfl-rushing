@@ -8,6 +8,25 @@ defmodule TheScore.Players do
 
   alias TheScore.Players.Profile
 
+  def list_profiles(filters) do
+    filters
+    |> Enum.reduce(Profile, fn
+      {_, nil}, query ->
+        query
+      {:order, order}, query ->
+        from q in query, order_by: {^order, :name}
+      {:matching, name}, query ->
+        from q in query, where: ilike(q.name, ^"%#{name}%")
+    end)
+    |> Repo.all
+  end
+
+  def list_profiles(%{matching: name}) when is_binary(name) do
+    Profile
+    |> where([p], ilike(p.name, ^"%#{name}%"))
+    |> Repo.all
+  end
+
   @doc """
   Returns the list of profiles.
 
@@ -17,11 +36,6 @@ defmodule TheScore.Players do
       [%Profile{}, ...]
 
   """
-  def list_profiles(%{matching: name}) when is_binary(name) do
-    Profile
-    |> where([p], ilike(p.name, ^"%#{name}%"))
-    |> Repo.all
-  end
   def list_profiles(_) do
     Repo.all(Profile)
   end
