@@ -1,7 +1,7 @@
 defmodule TheScoreWeb.Schema do
   use Absinthe.Schema
 
-  alias TheScoreWeb.PlayersResolver
+  alias TheScoreWeb.Resolvers
 
   object :player do
     field :name, :string
@@ -23,8 +23,9 @@ defmodule TheScoreWeb.Schema do
 
   query do
     @desc "Get all players"
-    field :all_players, non_null(list_of(non_null(:player))) do
-      resolve(&PlayersResolver.all_profiles/3)
+    field :all_players, list_of(:player) do
+      arg :matching, :string
+      resolve &Resolvers.Players.all_profiles/3
     end
   end
 
@@ -47,7 +48,7 @@ defmodule TheScoreWeb.Schema do
       arg :rushing_yards_each_forty_plus, :string
       arg :rushing_fumbles, :string
 
-      resolve(&PlayersResolver.create_profile/3)
+      resolve &Resolvers.Players.create_profile/3
     end
   end
 end

@@ -1,8 +1,8 @@
-defmodule TheScoreWeb.PlayersResolver do
+defmodule TheScoreWeb.Resolvers.Players do
   alias TheScore.Players
 
-  def all_profiles(_root, _args, _info) do
-    {:ok, Players.list_profiles()}
+  def all_profiles(_root, args, _info) do
+    {:ok, Players.list_profiles(args)}
   end
 
   def create_profile(_root, args, _info) do

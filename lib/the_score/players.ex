@@ -17,7 +17,12 @@ defmodule TheScore.Players do
       [%Profile{}, ...]
 
   """
-  def list_profiles do
+  def list_profiles(%{matching: name}) when is_binary(name) do
+    Profile
+    |> where([p], ilike(p.name, ^"%#{name}%"))
+    |> Repo.all
+  end
+  def list_profiles(_) do
     Repo.all(Profile)
   end
 
