@@ -68,6 +68,16 @@ mutation {
 }
 ```
 
+Query with arguments
+```javascript
+// {"term": "Jo"}
+
+query ($term: String) {
+  allPlayers(matching: $term, order: DESC) {
+    name
+  }
+}
+```
 # Dependencies
 Elixir
 Phoenix

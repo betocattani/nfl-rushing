@@ -8,6 +8,18 @@ defmodule TheScore.Players do
 
   alias TheScore.Players.Profile
 
+
+  @doc """
+  Returns the list of profiles, able to receive filters
+
+  ## Examples
+
+  iex> list_profiles()
+  [%Profile{}, ...]
+
+  iex> list_profiles(order: DESC)
+  [%Profile{}, ...]
+  """
   def list_profiles(filters) do
     filters
     |> Enum.reduce(Profile, fn
@@ -25,19 +37,6 @@ defmodule TheScore.Players do
     Profile
     |> where([p], ilike(p.name, ^"%#{name}%"))
     |> Repo.all
-  end
-
-  @doc """
-  Returns the list of profiles.
-
-  ## Examples
-
-      iex> list_profiles()
-      [%Profile{}, ...]
-
-  """
-  def list_profiles(_) do
-    Repo.all(Profile)
   end
 
   @doc """
