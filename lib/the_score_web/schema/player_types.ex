@@ -1,6 +1,8 @@
 defmodule TheScoreWeb.Schema.PlayerTypes do
   use Absinthe.Schema.Notation
 
+  alias TheScoreWeb.Resolvers
+
   object :player do
     field :name, :string
     field :team, :string
@@ -17,6 +19,14 @@ defmodule TheScoreWeb.Schema.PlayerTypes do
     field :rushing_yards_each_twenty_plus, :string
     field :rushing_yards_each_forty_plus, :string
     field :rushing_fumbles, :string
+  end
+
+  object :players_queries do
+    field :players, list_of(:player) do
+      arg :filter, :player_profile_filter
+      arg :order, type: :sort_players, default_value: :asc
+      resolve &Resolvers.Players.all_profiles/3
+    end
   end
 
   @desc "Filtering options for the players profile list"
