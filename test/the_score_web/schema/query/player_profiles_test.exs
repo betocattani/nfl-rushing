@@ -31,7 +31,7 @@ defmodule TheScoreWeb.Schema.Query.PlayerProfilesTest do
 
   @query """
   {
-    allPlayers(matching: 123) {
+    allPlayers(filter: {name: 123}) {
       name
     }
   }
@@ -41,12 +41,12 @@ defmodule TheScoreWeb.Schema.Query.PlayerProfilesTest do
     assert %{"errors" => [
       %{"message" => message}
     ]} = json_response(response, 200)
-    assert message == "Argument \"matching\" has invalid value 123."
+    assert message == "Argument \"filter\" has invalid value {name: 123}.\nIn field \"name\": Expected type \"String\", found 123."
   end
 
   @query """
   {
-    allPlayers(matching: "Joe") {
+    allPlayers(filter: {name: "Joe"}) {
       name
       position
       team
@@ -67,7 +67,7 @@ defmodule TheScoreWeb.Schema.Query.PlayerProfilesTest do
 
   @query """
   query ($term: String) {
-    allPlayers(matching: $term) {
+    allPlayers(filter: {name: $term}) {
       name
       position
       team
@@ -100,5 +100,21 @@ defmodule TheScoreWeb.Schema.Query.PlayerProfilesTest do
     assert %{
       "data" => %{"allPlayers" => [%{"name" => "Tommylee Lewis"} | _]}
     } = json_response(response, 200)
+  end
+
+  @query """
+  query ($filter: PlayerProfileFilter!) {
+    allPlayers(filter: $filter) {
+      name
+      longestRush
+    }
+  }
+  """
+  @variables %{filter: %{"name" => "Johnny Holton", "longestRush" => "29"}}
+  test "allPlayers field returns allPlayers, filtering with a variable" do
+    response = get(build_conn(), "/api", query: @query, variables: @variables)
+    assert %{
+      "data" => %{"allPlayers" => [%{"name" => "Johnny Holton", "longestRush" => "29"}]}
+    } == json_response(response, 200)
   end
 end

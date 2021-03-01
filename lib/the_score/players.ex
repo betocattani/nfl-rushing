@@ -20,23 +20,28 @@ defmodule TheScore.Players do
   iex> list_profiles(order: DESC)
   [%Profile{}, ...]
   """
-  def list_profiles(filters) do
-    filters
+  def list_profiles(args) do
+    args
     |> Enum.reduce(Profile, fn
-      {_, nil}, query ->
-        query
       {:order, order}, query ->
-        from q in query, order_by: {^order, :name}
-      {:matching, name}, query ->
-        from q in query, where: ilike(q.name, ^"%#{name}%")
+        query |> order_by({^order, :name})
+      {:filter, filter}, query ->
+        query |> filter_with(filter)
     end)
     |> Repo.all
   end
 
-  def list_profiles(%{matching: name}) when is_binary(name) do
-    Profile
-    |> where([p], ilike(p.name, ^"%#{name}%"))
-    |> Repo.all
+  def filter_with(query, filter) do
+    Enum.reduce(filter, query, fn
+      {:name, name}, query ->
+        from q in query, where: ilike(q.name, ^"%#{name}%")
+      {:total_rushing_touchdowns, total_rushing_touchdowns}, query ->
+        from q in query, where: q.total_rushing_touchdowns == ^total_rushing_touchdowns
+      {:total_rushing_yards, total_rushing_yards}, query ->
+        from q in query, where: q.total_rushing_yards == ^total_rushing_yards
+      {:longest_rush, longest_rush}, query ->
+        from q in query, where: q.longest_rush == ^longest_rush
+    end)
   end
 
   @doc """

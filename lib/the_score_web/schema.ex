@@ -3,11 +3,6 @@ defmodule TheScoreWeb.Schema do
 
   alias TheScoreWeb.Resolvers
 
-  enum :sort_players do
-    value :asc
-    value :desc
-  end
-
   object :player do
     field :name, :string
     field :team, :string
@@ -29,10 +24,31 @@ defmodule TheScoreWeb.Schema do
   query do
     @desc "Get all players"
     field :all_players, list_of(:player) do
-      arg :matching, :string
+      arg :filter, :player_profile_filter
       arg :order, type: :sort_players, default_value: :asc
       resolve &Resolvers.Players.all_profiles/3
     end
+  end
+
+  enum :sort_players do
+    value :asc
+    value :desc
+  end
+
+  @desc "Filtering options for the players profile list"
+  input_object :player_profile_filter do
+
+    @desc "Matching a name"
+    field :name, :string
+
+    @desc "Matching by total_rushing_touchdowns"
+    field :total_rushing_touchdowns, :string
+
+    @desc "Matching by total_rushing_yards"
+    field :total_rushing_yards, :string
+
+    @desc "Matching by longest_rush"
+    field :longest_rush, :string
   end
 
   mutation do

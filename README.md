@@ -78,6 +78,22 @@ query ($term: String) {
   }
 }
 ```
+
+Using filters
+{
+  allPlayers(filter: {
+    name: "Cattani",
+    totalRushingYards: "8",
+    longestRush: "3",
+    totalRushingTouchdowns: "1"
+  }) {
+    name
+    longestRush
+    totalRushingYards
+    totalRushingTouchdowns
+  }
+}
+
 # Dependencies
 Elixir
 Phoenix
