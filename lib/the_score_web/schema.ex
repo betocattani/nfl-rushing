@@ -16,9 +16,15 @@ defmodule TheScoreWeb.Schema do
   end
 
   mutation do
-    field :create_player_profile, :player do
+    field :create_player_profile, :player_profile_result do
       arg :input, non_null(:player_profile_input)
       resolve &Resolvers.Players.create_profile/3
     end
+  end
+
+  @desc "An error encountered trying to persist input"
+  object :input_error do
+    field :key, non_null(:string)
+    field :message, non_null(:string)
   end
 end

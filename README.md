@@ -70,25 +70,26 @@ mutation {
 
 # Mutation using variables
 ```javascript
-mutation CreatePlayerProfile($playerProfile: PlayerProfileInput!) {
+mutation ($playerProfile: PlayerProfileInput!) {
   createPlayerProfile(input: $playerProfile) {
-    name
-    team
+    errors {
+      key
+      message
+    }
+    playerProfile {
+      name
+      team
+      position
+    }
   }
 }
 
-
-mutation CreatePlayerProfile($playerProfile: PlayerProfileInput!) {
-  playerProfile: createPlayerProfile(input: $playerProfile) {
-    name
-    team
-  }
-}
-
-// variables input
+// variables
 {
   "playerProfile": {
-    "name": "Joao capiroto"
+    "name": "Joao bosco",
+    "team": "bentao",
+    "position": "midle"
   }
 }
 ```

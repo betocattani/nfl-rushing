@@ -62,4 +62,9 @@ defmodule TheScoreWeb.Schema.PlayerTypes do
     field :rushing_yards_each_forty_plus, :string
     field :rushing_fumbles, :string
   end
+
+  object :player_profile_result do
+    field :player_profile, :player
+    field :errors, list_of(:input_error)
+  end
 end

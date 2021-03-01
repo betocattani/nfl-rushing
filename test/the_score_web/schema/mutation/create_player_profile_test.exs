@@ -11,9 +11,12 @@ defmodule TheScoreWeb.Schema.Mutation.CreatePlayerProfileTest do
   @query """
   mutation ($playerProfile: PlayerProfileInput!) {
     createPlayerProfile(input: $playerProfile) {
-      name
-      team
-      position
+      errors { key message}
+      playerProfile {
+        name
+        team
+        position
+      }
     }
   }
   """
@@ -31,9 +34,12 @@ defmodule TheScoreWeb.Schema.Mutation.CreatePlayerProfileTest do
     assert json_response(conn, 200) == %{
       "data" => %{
         "createPlayerProfile" => %{
-          "name" => player_profile["name"],
-          "team" => player_profile["team"],
-          "position" => player_profile["position"]
+          "errors" => nil,
+          "playerProfile" => %{
+            "name" => player_profile["name"],
+            "team" => player_profile["team"],
+            "position" => player_profile["position"]
+          }
         }
       }
     }
@@ -51,15 +57,14 @@ defmodule TheScoreWeb.Schema.Mutation.CreatePlayerProfileTest do
       variables: %{"playerProfile" => player_profile}
 
     assert json_response(conn, 200) == %{
-      "data" => %{"createPlayerProfile" => nil},
-      "errors" => [
-        %{
-          "locations" => [%{"column" => 3, "line" => 2}],
-          "message" => "Could not create player profile",
-          "details" => %{"name" => ["has already been taken"]},
-          "path" => ["createPlayerProfile"]
+      "data" => %{
+        "createPlayerProfile" => %{
+          "errors" => [
+            %{"key" => "name", "message" => "has already been taken"}
+          ],
+          "playerProfile" => nil
         }
-      ]
+      }
     }
   end
 
@@ -74,15 +79,14 @@ defmodule TheScoreWeb.Schema.Mutation.CreatePlayerProfileTest do
       variables: %{"playerProfile" => player_profile}
 
     assert json_response(conn, 200) == %{
-      "data" => %{"createPlayerProfile" => nil},
-      "errors" => [
-        %{
-          "locations" => [%{"column" => 3, "line" => 2}],
-          "message" => "Could not create player profile",
-          "details" => %{"position" => ["can't be blank"]},
-          "path" => ["createPlayerProfile"]
+      "data" => %{
+        "createPlayerProfile" => %{
+          "errors" => [
+            %{"key" => "position", "message" => "can't be blank"}
+          ],
+          "playerProfile" => nil
         }
-      ]
+      }
     }
   end
 end
