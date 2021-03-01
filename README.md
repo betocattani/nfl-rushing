@@ -68,6 +68,31 @@ mutation {
 }
 ```
 
+# Mutation using variables
+```javascript
+mutation CreatePlayerProfile($playerProfile: PlayerProfileInput!) {
+  createPlayerProfile(input: $playerProfile) {
+    name
+    team
+  }
+}
+
+
+mutation CreatePlayerProfile($playerProfile: PlayerProfileInput!) {
+  playerProfile: createPlayerProfile(input: $playerProfile) {
+    name
+    team
+  }
+}
+
+// variables input
+{
+  "playerProfile": {
+    "name": "Joao capiroto"
+  }
+}
+```
+
 Query with arguments
 ```javascript
 // {"term": "Jo"}
@@ -104,8 +129,16 @@ query ($filter: PlayerProfileFilter!) {
   }
 }
 
-{"filter": {"name": "cattani"}}
+{
+"filter": {
+    "longestRush": "15",
+    "totalRushingTouchdowns": "0",
+    "totalRushingYards": "15"
+  }
+}
+
 or
+
 {"filter": {}}
 ```
 

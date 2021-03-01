@@ -16,24 +16,8 @@ defmodule TheScoreWeb.Schema do
   end
 
   mutation do
-    @desc "Create a new Player Profile"
-    field :create_profile, :player do
-      arg :name, :string
-      arg :team, :string
-      arg :position, :string
-      arg :rushing_attempts_per_game_avg, :string
-      arg :rushing_attempts, :string
-      arg :total_rushing_yards, :string
-      arg :rushing_average_yards_per_attempt, :string
-      arg :rushing_yards_per_game, :string
-      arg :total_rushing_touchdowns, :string
-      arg :longest_rush, :string
-      arg :rushing_first_downs, :string
-      arg :rushing_first_down_percentage_first, :string
-      arg :rushing_yards_each_twenty_plus, :string
-      arg :rushing_yards_each_forty_plus, :string
-      arg :rushing_fumbles, :string
-
+    field :create_player_profile, :player do
+      arg :input, non_null(:player_profile_input)
       resolve &Resolvers.Players.create_profile/3
     end
   end
