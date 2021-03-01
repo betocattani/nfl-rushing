@@ -55,7 +55,31 @@ defmodule TheScoreWeb.Schema.Mutation.CreatePlayerProfileTest do
       "errors" => [
         %{
           "locations" => [%{"column" => 3, "line" => 2}],
-          "message" => "Could not be possible to create the player profile",
+          "message" => "Could not create player profile",
+          "details" => %{"name" => ["has already been taken"]},
+          "path" => ["createPlayerProfile"]
+        }
+      ]
+    }
+  end
+
+  test "creating a player profile with missing position fields" do
+    player_profile = %{
+      "name" => "Marc Mariani",
+      "team" => "São Bento"
+    }
+    conn = build_conn()
+    conn = post conn, "/api",
+      query: @query,
+      variables: %{"playerProfile" => player_profile}
+
+    assert json_response(conn, 200) == %{
+      "data" => %{"createPlayerProfile" => nil},
+      "errors" => [
+        %{
+          "locations" => [%{"column" => 3, "line" => 2}],
+          "message" => "Could not create player profile",
+          "details" => %{"position" => ["can't be blank"]},
           "path" => ["createPlayerProfile"]
         }
       ]
