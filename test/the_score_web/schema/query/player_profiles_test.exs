@@ -103,6 +103,21 @@ defmodule TheScoreWeb.Schema.Query.PlayerProfilesTest do
   end
 
   @query """
+  query ($order: SortOrder!) {
+    allPlayers(order: $order) {
+      name
+    }
+  }
+  """
+  @variables %{"order" => "ASC"}
+  test "allPlayers field returns items ascending using variables" do
+    response = get(build_conn(), "/api", query: @query, variables: @variables)
+    assert %{
+      "data" => %{"allPlayers" => [%{"name" => "Joe Banyard"} | _]}
+    } = json_response(response, 200)
+  end
+
+  @query """
   query ($filter: PlayerProfileFilter!) {
     allPlayers(filter: $filter) {
       name
