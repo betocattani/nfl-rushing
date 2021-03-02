@@ -154,3 +154,8 @@ PostgreSQL
 - [] Implement module to read json and populate the database
 - [] Front end application
 - [] Explain the solution
+
+# seeds database with rushing.json
+```elixir
+iex> TheScore.ImportPlayers.import("dev/support/rushing.json")
+```
