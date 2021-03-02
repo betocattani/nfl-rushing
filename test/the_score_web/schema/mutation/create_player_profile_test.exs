@@ -1,9 +1,6 @@
 defmodule TheScoreWeb.Schema.Mutation.CreatePlayerProfileTest do
   use TheScoreWeb.ConnCase, async: true
 
-  alias TheScore.{Repo, Player}
-  import Ecto.Query
-
   setup do
     TheScore.Seeds.run()
   end
