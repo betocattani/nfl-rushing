@@ -6,14 +6,14 @@ defmodule TheScoreWeb.Schema do
 
   import_types __MODULE__.PlayerTypes
 
-  query do
-    @desc "Get all players"
-    import_fields :players_queries
-  end
-
   enum :sort_players do
     value :asc
     value :desc
+  end
+
+  query do
+    @desc "Get all players"
+    import_fields :players_queries
   end
 
   mutation do

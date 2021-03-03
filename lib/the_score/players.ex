@@ -4,10 +4,9 @@ defmodule TheScore.Players do
   """
 
   import Ecto.Query, warn: false
-  alias TheScore.Repo
 
   alias TheScore.Players.Profile
-
+  alias TheScore.Repo
 
   @doc """
   Returns the list of profiles, able to receive filters
