@@ -1,7 +1,32 @@
 # TheScore
+Phoenix Application using Absinthe GraphQL
+
+# Dependencies
+Elixir 1.11.3 (compiled with Erlang/OTP 23)
+Phoenix - 1.5.7
+Absinthe - 1.4
+PostgreSQL - 13.1
+
+- [] Missing cast values
+- [] Download csv file
+- [] Front end application
+- [] Explain the solution
+
+Install the project
+```bash
+$ git@github.com:betocattani/nfl-rushing.git
+```
+
+install dependencies
+```
+$ cd nfl-rushing
+```
+# Populate database with the file rushing.json
+```elixir
+iex> TheScore.ImportPlayers.import("dev/support/rushing.json")
+```
 
 To start your Phoenix server:
-
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server`
@@ -141,21 +166,4 @@ query ($filter: PlayerProfileFilter!) {
 or
 
 {"filter": {}}
-```
-
-# Dependencies
-Elixir
-Phoenix
-Absinthe - Graphql
-PostgreSQL
-
-- [] Missing cast values
-- [] Download csv file
-- [] Implement module to read json and populate the database
-- [] Front end application
-- [] Explain the solution
-
-# seeds database with rushing.json
-```elixir
-iex> TheScore.ImportPlayers.import("dev/support/rushing.json")
 ```
