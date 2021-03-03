@@ -7,26 +7,34 @@ Phoenix - 1.5.7
 Absinthe - 1.4
 PostgreSQL - 13.1
 
-- [] Missing cast values
-- [] Download csv file
-- [] Front end application
-- [] Explain the solution
+- [ ] Missing cast values
+- [ ] Download csv file
 
 Install the project
 ```bash
-$ git@github.com:betocattani/nfl-rushing.git
+$ git clone git@github.com:betocattani/nfl-rushing.git
 ```
 
 install dependencies
 ```
 $ cd nfl-rushing
+
+$ mix deps.get
+
+$ mix ecto.setup
 ```
+
 # Populate database with the file rushing.json
+```bash
+$ iex -S mix
+```
+
 ```elixir
 iex> TheScore.ImportPlayers.import("dev/support/rushing.json")
 ```
 
-To start your Phoenix server:
+To config the Phoenix application:
+  * $ cd nfl-rushing
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server`
