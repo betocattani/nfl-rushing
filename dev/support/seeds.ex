@@ -11,13 +11,13 @@ defmodule TheScore.Seeds do
       total_rushing_yards: "7",
       rushing_average_yards_per_attempt: "3.5",
       rushing_yards_per_game: "7",
-      total_rushing_touchdowns: "0",
+      total_rushing_touchdowns: 1,
       longest_rush: "7",
-      rushing_first_downs: "0",
+      rushing_first_downs: 2,
       rushing_first_down_percentage_first: "0",
-      rushing_yards_each_twenty_plus: "0",
-      rushing_yards_each_forty_plus: "0",
-      rushing_fumbles: "0"
+      rushing_yards_each_twenty_plus: 0,
+      rushing_yards_each_forty_plus: 0,
+      rushing_fumbles: 0
     } |> Repo.insert!
 
     %Profile{
@@ -29,13 +29,13 @@ defmodule TheScore.Seeds do
       total_rushing_yards: "43",
       rushing_average_yards_per_attempt: "7.2",
       rushing_yards_per_game: "2.9",
-      total_rushing_touchdowns: "0",
+      total_rushing_touchdowns: 2,
       longest_rush: "29",
-      rushing_first_downs: "2",
+      rushing_first_downs: 3,
       rushing_first_down_percentage_first: "33.3",
-      rushing_yards_each_twenty_plus: "1",
-      rushing_yards_each_forty_plus: "0",
-      rushing_fumbles: "1"
+      rushing_yards_each_twenty_plus: 1,
+      rushing_yards_each_forty_plus: 0,
+      rushing_fumbles: 1
     } |> Repo.insert!
 
     %Profile{
@@ -47,13 +47,13 @@ defmodule TheScore.Seeds do
       total_rushing_yards: "11",
       rushing_average_yards_per_attempt: "3.7",
       rushing_yards_per_game: "0.9",
-      total_rushing_touchdowns: "0",
+      total_rushing_touchdowns: 4,
       longest_rush: "7",
-      rushing_first_downs: "1",
+      rushing_first_downs: 5,
       rushing_first_down_percentage_first: "33.3",
-      rushing_yards_each_twenty_plus: "0",
-      rushing_yards_each_forty_plus: "0",
-      rushing_fumbles: "0"
+      rushing_yards_each_twenty_plus: 0,
+      rushing_yards_each_forty_plus: 0,
+      rushing_fumbles: 0
     } |> Repo.insert!
 
     %Profile{
@@ -65,13 +65,13 @@ defmodule TheScore.Seeds do
       total_rushing_yards: "15",
       rushing_average_yards_per_attempt: "15",
       rushing_yards_per_game: "0.9",
-      total_rushing_touchdowns: "0",
+      total_rushing_touchdowns: 6,
       longest_rush: "15",
-      rushing_first_downs: "1",
+      rushing_first_downs: 7,
       rushing_first_down_percentage_first: "100",
-      rushing_yards_each_twenty_plus: "0",
-      rushing_yards_each_forty_plus: "0",
-      rushing_fumbles: "0"
+      rushing_yards_each_twenty_plus: 0,
+      rushing_yards_each_forty_plus: 0,
+      rushing_fumbles: 0
     } |> Repo.insert!
 
     :ok

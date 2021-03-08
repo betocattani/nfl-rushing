@@ -16,9 +16,9 @@ defmodule TheScoreWeb.Schema.PlayerTypes do
     field :longest_rush, :string
     field :rushing_first_downs, :string
     field :rushing_first_down_percentage_first, :string
-    field :rushing_yards_each_twenty_plus, :string
-    field :rushing_yards_each_forty_plus, :string
-    field :rushing_fumbles, :string
+    field :rushing_yards_each_twenty_plus, :integer
+    field :rushing_yards_each_forty_plus, :integer
+    field :rushing_fumbles, :integer
   end
 
   object :players_queries do
@@ -58,9 +58,9 @@ defmodule TheScoreWeb.Schema.PlayerTypes do
     field :longest_rush, :string
     field :rushing_first_downs, :string
     field :rushing_first_down_percentage_first, :string
-    field :rushing_yards_each_twenty_plus, :string
-    field :rushing_yards_each_forty_plus, :string
-    field :rushing_fumbles, :string
+    field :rushing_yards_each_twenty_plus, :integer
+    field :rushing_yards_each_forty_plus, :integer
+    field :rushing_fumbles, :integer
   end
 
   object :player_profile_result do

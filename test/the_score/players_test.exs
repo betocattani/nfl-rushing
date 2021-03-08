@@ -6,8 +6,40 @@ defmodule TheScore.PlayersTest do
   describe "profiles" do
     alias TheScore.Players.Profile
 
-    @valid_attrs %{longest_rush: "some longest_rush", name: "some name", position: "some position", rushing_attempts: "some rushing_attempts", rushing_attempts_per_game_avg: "some rushing_attempts_per_game_avg", rushing_average_yards_per_attempt: "some rushing_average_yards_per_attempt", rushing_first_down_percentage_first: "some rushing_first_down_percentage_first", rushing_first_downs: "some rushing_first_downs", rushing_fumbles: "some rushing_fumbles", rushing_yards_each_twenty_plus: "some rushing_yards_each_twenty_plus", rushing_yards_each_forty_plus: "some rushing_yards_each_forty_plus", rushing_yards_per_game: "some rushing_yards_per_game", team: "some team", total_rushing_touchdowns: "some total_rushing_touchdowns", total_rushing_yards: "some total_rushing_yards"}
-    @update_attrs %{longest_rush: "some updated longest_rush", name: "some updated name", position: "some updated position", rushing_attempts: "some updated rushing_attempts", rushing_attempts_per_game_avg: "some updated rushing_attempts_per_game_avg", rushing_average_yards_per_attempt: "some updated rushing_average_yards_per_attempt", rushing_first_down_percentage_first: "some updated rushing_first_down_percentage_first", rushing_first_downs: "some updated rushing_first_downs", rushing_fumbles: "some updated rushing_fumbles", rushing_yards_each_twenty_plus: "some updated rushing_yards_each_twenty_plus", rushing_yards_each_forty_plus: "some updated rushing_yards_each_forty_plus", rushing_yards_per_game: "some updated rushing_yards_per_game", team: "some updated team", total_rushing_touchdowns: "some updated total_rushing_touchdowns", total_rushing_yards: "some updated total_rushing_yards"}
+    @valid_attrs %{
+      longest_rush: "some longest_rush",
+      name: "some name",
+      position: "some position",
+      rushing_attempts: "some rushing_attempts",
+      rushing_attempts_per_game_avg: "some rushing_attempts_per_game_avg",
+      rushing_average_yards_per_attempt: "some rushing_average_yards_per_attempt",
+      rushing_first_down_percentage_first: "some rushing_first_down_percentage_first",
+      rushing_first_downs: 1,
+      rushing_fumbles: 0,
+      rushing_yards_each_twenty_plus: 0,
+      rushing_yards_each_forty_plus: 0,
+      rushing_yards_per_game: "some rushing_yards_per_game",
+      team: "some team",
+      total_rushing_touchdowns: 2,
+      total_rushing_yards: "some total_rushing_yards"
+    }
+    @update_attrs %{
+      longest_rush: "some updated longest_rush",
+      name: "some updated name",
+      position: "some updated position",
+      rushing_attempts: "some updated rushing_attempts",
+      rushing_attempts_per_game_avg: "some updated rushing_attempts_per_game_avg",
+      rushing_average_yards_per_attempt: "some updated rushing_average_yards_per_attempt",
+      rushing_first_down_percentage_first: "some updated rushing_first_down_percentage_first",
+      rushing_first_downs: 2,
+      rushing_fumbles: nil,
+      rushing_yards_each_twenty_plus: nil,
+      rushing_yards_each_forty_plus: nil,
+      rushing_yards_per_game: "some updated rushing_yards_per_game",
+      team: "some updated team",
+      total_rushing_touchdowns: 1,
+      total_rushing_yards: "some updated total_rushing_yards"
+    }
 
     def profile_fixture(attrs \\ %{}) do
       {:ok, profile} =
@@ -32,13 +64,13 @@ defmodule TheScore.PlayersTest do
       assert profile.rushing_attempts_per_game_avg == "some rushing_attempts_per_game_avg"
       assert profile.rushing_average_yards_per_attempt == "some rushing_average_yards_per_attempt"
       assert profile.rushing_first_down_percentage_first == "some rushing_first_down_percentage_first"
-      assert profile.rushing_first_downs == "some rushing_first_downs"
-      assert profile.rushing_fumbles == "some rushing_fumbles"
-      assert profile.rushing_yards_each_twenty_plus == "some rushing_yards_each_twenty_plus"
-      assert profile.rushing_yards_each_forty_plus == "some rushing_yards_each_forty_plus"
+      assert profile.rushing_first_downs == 1
+      assert profile.rushing_fumbles == 0
+      assert profile.rushing_yards_each_twenty_plus == 0
+      assert profile.rushing_yards_each_forty_plus == 0
       assert profile.rushing_yards_per_game == "some rushing_yards_per_game"
       assert profile.team == "some team"
-      assert profile.total_rushing_touchdowns == "some total_rushing_touchdowns"
+      assert profile.total_rushing_touchdowns == 2
       assert profile.total_rushing_yards == "some total_rushing_yards"
     end
 
@@ -52,13 +84,13 @@ defmodule TheScore.PlayersTest do
       assert profile.rushing_attempts_per_game_avg == "some updated rushing_attempts_per_game_avg"
       assert profile.rushing_average_yards_per_attempt == "some updated rushing_average_yards_per_attempt"
       assert profile.rushing_first_down_percentage_first == "some updated rushing_first_down_percentage_first"
-      assert profile.rushing_first_downs == "some updated rushing_first_downs"
-      assert profile.rushing_fumbles == "some updated rushing_fumbles"
-      assert profile.rushing_yards_each_twenty_plus == "some updated rushing_yards_each_twenty_plus"
-      assert profile.rushing_yards_each_forty_plus == "some updated rushing_yards_each_forty_plus"
+      assert profile.rushing_first_downs == 2
+      assert profile.rushing_fumbles == nil
+      assert profile.rushing_yards_each_twenty_plus == nil
+      assert profile.rushing_yards_each_forty_plus == nil
       assert profile.rushing_yards_per_game == "some updated rushing_yards_per_game"
       assert profile.team == "some updated team"
-      assert profile.total_rushing_touchdowns == "some updated total_rushing_touchdowns"
+      assert profile.total_rushing_touchdowns == 1
       assert profile.total_rushing_yards == "some updated total_rushing_yards"
     end
 

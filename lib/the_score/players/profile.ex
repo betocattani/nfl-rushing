@@ -10,13 +10,13 @@ defmodule TheScore.Players.Profile do
     field :rushing_attempts_per_game_avg, :string
     field :rushing_average_yards_per_attempt, :string
     field :rushing_first_down_percentage_first, :string
-    field :rushing_first_downs, :string
-    field :rushing_fumbles, :string
-    field :rushing_yards_each_twenty_plus, :string
-    field :rushing_yards_each_forty_plus, :string
+    field :rushing_first_downs, :integer
+    field :rushing_fumbles, :integer
+    field :rushing_yards_each_twenty_plus, :integer
+    field :rushing_yards_each_forty_plus, :integer
     field :rushing_yards_per_game, :string
     field :team, :string
-    field :total_rushing_touchdowns, :string
+    field :total_rushing_touchdowns, :integer
     field :total_rushing_yards, :string
 
     timestamps()

@@ -24,14 +24,16 @@ defmodule TheScore.ImportPlayers do
         total_rushing_yards: to_string(player["Yds"]),
         rushing_average_yards_per_attempt: to_string(player["Avg"]),
         rushing_yards_per_game: to_string(player["Yds/G"]),
-        total_rushing_touchdowns: to_string(player["TD"]),
+        total_rushing_touchdowns: player["TD"],
         longest_rush: to_string(player["Lng"]),
-        rushing_first_downs: to_string(player["1st"]),
+        rushing_first_downs: player["1st"],
         rushing_first_down_percentage_first: to_string(player["1st%"]),
-        rushing_yards_each_twenty_plus: to_string(player["20+"]),
-        rushing_yards_each_forty_plus: to_string(player["40+"]),
-        rushing_fumbles: to_string(player["FUM"])
+        rushing_yards_each_twenty_plus: read_int(player["20+"]),
+        rushing_yards_each_forty_plus: read_int(player["40+"]),
+        rushing_fumbles: read_int(player["FUM"])
       }
     end
   end
+
+  defp read_int(value) when is_integer(value), do: value
 end
