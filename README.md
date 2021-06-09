@@ -1,30 +1,23 @@
-# TheScore
-Phoenix Application using Absinthe GraphQL
+# Phoenix Application using Absinthe GraphQL
 
-# Dependencies
-Elixir 1.11.3 (compiled with Erlang/OTP 23)
-Phoenix - 1.5.7
-Absinthe - 1.4
-PostgreSQL - 13.1
+### Dependencies
+- Elixir 1.11.3 (compiled with Erlang/OTP 23)
+- Phoenix - 1.5.7
+- Absinthe - 1.4
+- PostgreSQL - 13.1
 
-- [ ] Missing cast values
-- [ ] Download csv file
-
-Install the project
+## Install the project
 ```bash
 $ git clone git@github.com:betocattani/nfl-rushing.git
 ```
 
-install dependencies
-```
-$ cd nfl-rushing
+To config the Phoenix application:
+  * $ cd `nfl-rushing`
+  * Install dependencies with `mix deps.get`
+  * Create and migrate your database with `mix ecto.setup`
+  * Start Phoenix endpoint with `mix phx.server`
 
-$ mix deps.get
-
-$ mix ecto.setup
-```
-
-# Populate database with the file rushing.json
+## Populate database with the file rushing.json
 ```bash
 $ iex -S mix
 ```
@@ -32,17 +25,10 @@ $ iex -S mix
 ```elixir
 iex> TheScore.ImportPlayers.import("dev/support/rushing.json")
 ```
+## Access the GraphQL Playground
+Now you can visit [`localhost:4000`](http://localhost:4000/graphiql) from your browser
 
-To config the Phoenix application:
-  * $ cd nfl-rushing
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000/graphiql) from your browser to
-access the GraphQL Playground
-
-list all Players Profiles
+List all Players Profiles
 ```javascript
 {
   players {
@@ -101,7 +87,7 @@ mutation {
 }
 ```
 
-# Mutation using variables
+Mutation using variables
 ```javascript
 mutation ($playerProfile: PlayerProfileInput!) {
   createPlayerProfile(input: $playerProfile) {
