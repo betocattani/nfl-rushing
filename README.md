@@ -1,4 +1,4 @@
-# Phoenix Application using Absinthe GraphQL
+# Phoenix Application GraphQL API using Absinthe
 
 ### Dependencies
 - Elixir 1.11.3 (compiled with Erlang/OTP 23)
