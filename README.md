@@ -28,7 +28,7 @@ iex> TheScore.ImportPlayers.import("dev/support/rushing.json")
 ## Access the GraphQL Playground
 Now you can visit [`localhost:4000`](http://localhost:4000/graphiql) from your browser
 
-List all Players Profiles
+## List all Players
 ```javascript
 {
   players {
@@ -50,10 +50,11 @@ List all Players Profiles
 }
 ```
 
-Mutation to create a new Player Profile
+## Mutatation to create a new Player
 ```javascript
 mutation {
-  createProfile(longestRush: "3",
+  createProfile(
+    longestRush: "3",
     name: "Periclao",
     position: "AT",
     rushingAttempts: "6",
@@ -87,7 +88,9 @@ mutation {
 }
 ```
 
-Mutation using variables
+or 
+
+## Creates a new Player using query variables
 ```javascript
 mutation ($playerProfile: PlayerProfileInput!) {
   createPlayerProfile(input: $playerProfile) {
@@ -103,7 +106,7 @@ mutation ($playerProfile: PlayerProfileInput!) {
   }
 }
 
-// variables
+// query variables
 {
   "playerProfile": {
     "name": "Joao bosco",
@@ -113,51 +116,62 @@ mutation ($playerProfile: PlayerProfileInput!) {
 }
 ```
 
-Query with arguments
-```javascript
-// {"term": "Jo"}
-
-query ($term: String) {
-  players(matching: $term, order: DESC) {
-    name
-  }
-}
-```
-
-Using filters
+## Find players using filter by name
 ```javascript
 {
-  players(filter: {
-    name: "Cattani",
-    totalRushingYards: "8",
-    longestRush: "3",
-    totalRushingTouchdowns: "1"
-  }) {
+  players(filter: {name: "Luiz Cattani"}) {
     name
-    longestRush
-    totalRushingYards
+    position
+    rushingAttempts
+    rushingAttemptsPerGameAvg
+    rushingAverageYardsPerAttempt
+    rushingFirstDownPercentageFirst
+    rushingFirstDowns
+    rushingFumbles
+    rushingYardsEachFortyPlus
+    rushingYardsEachTwentyPlus
+    rushingYardsPerGame
+    team
     totalRushingTouchdowns
+    totalRushingYards
   }
 }
 ```
 
-Using filter with Variables
+## Find players using filter in query variables
+
+Availables filters: `[name / totalRushingYards / longestRush / totalRushingTouchdowns]`
 ```javascript
 query ($filter: PlayerProfileFilter!) {
-  players(filter: $filter) {
+  players(filter: $filter, order: DESC) {
     name
+    position
+    rushingAttempts
+    rushingAttemptsPerGameAvg
+    rushingAverageYardsPerAttempt
+    rushingFirstDownPercentageFirst
+    rushingFirstDowns
+    rushingFumbles
+    rushingYardsEachFortyPlus
+    rushingYardsEachTwentyPlus
+    rushingYardsPerGame
+    team
+    totalRushingTouchdowns
+    totalRushingYards
   }
 }
 
+// Query Variables
 {
-"filter": {
-    "longestRush": "15",
-    "totalRushingTouchdowns": "0",
-    "totalRushingYards": "15"
+  "filter": {
+    "name": "Kevin"
+    "totalRushingYards": "8",
+    "longestRush": "3",
+    "totalRushingTouchdowns": "1"
   }
 }
 
-or
+// or
 
 {"filter": {}}
 ```
