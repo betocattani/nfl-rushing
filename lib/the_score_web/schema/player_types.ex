@@ -4,6 +4,7 @@ defmodule TheScoreWeb.Schema.PlayerTypes do
   alias TheScoreWeb.Resolvers
 
   object :player do
+    field :id, :string
     field :name, :string
     field :team, :string
     field :position, :string
@@ -28,6 +29,14 @@ defmodule TheScoreWeb.Schema.PlayerTypes do
       resolve &Resolvers.Players.all_profiles/3
     end
   end
+
+  object :find_player do
+    field :player, :player do
+      arg :id, :integer
+      resolve &Resolvers.Players.show_profile/3
+    end
+  end
+
 
   @desc "Filtering options for the players profile list"
   input_object :player_profile_filter do

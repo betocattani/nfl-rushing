@@ -10,4 +10,10 @@ defmodule TheScoreWeb.Resolvers.Players do
       {:ok, %{player_profile: profile}}
     end
   end
+
+  def show_profile(_, %{input: params}, _) do
+    with {:ok, profile} <- Players.get_profile!(params["id"]) do
+      {:ok, %{player_profile: profile}}
+    end
+  end
 end

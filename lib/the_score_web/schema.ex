@@ -14,6 +14,7 @@ defmodule TheScoreWeb.Schema do
   query do
     @desc "Get all players"
     import_fields :players_queries
+    import_fields :find_player
   end
 
   mutation do
